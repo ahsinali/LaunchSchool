@@ -36,7 +36,7 @@ loop do
 end
 prompt "Hello #{name}"
 
-prompt "Do you want to review the rules"
+prompt "Do you want to review the rules? (Press 'y' to review rules)"
 
 rules_review = gets.chomp
 
@@ -64,7 +64,7 @@ loop do
 
   display_result(choice, computer_choice)
 
-  prompt "Do you want to play again"
+  prompt "Do you want to play again? (y to play again)"
 
   answer = gets.chomp
 
