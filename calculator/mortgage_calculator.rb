@@ -52,9 +52,9 @@ loop do
   loop do 
     prompt "Months"
     months = gets.chomp
-    break if valid_int?(months) 
+    break if valid_int?(months) && months.to_i < 12
 
-    prompt "Please enter a valid integer for months"
+    prompt "Please enter a valid integer for months between 0 and 11"
   end
   int_rate = int_rate.to_f/1200
   loan_duration = (years.to_i )*12 + months.to_i

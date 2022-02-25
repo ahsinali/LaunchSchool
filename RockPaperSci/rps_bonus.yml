@@ -1,0 +1,22 @@
+welcome: |+
+          Welcome to the rock, paper, scissors, spock, lizard game! 
+          Please Enter your name:
+valid_name: "Make sure to enter a valid Name."
+rules: |+ 
+          Scissors cuts Paper
+          Scissors decapitates Lizard
+
+          Paper covers Rock
+          Paper disproves Spock
+
+          Rock crushes Lizard
+          Rock crushes Scissors
+
+          Lizard poisons Spock
+          Lizard eats Paper
+
+          Spock smashes Scissors
+          Spock vaporizes Rock      
+          
+          ***********************
+          ***********************
