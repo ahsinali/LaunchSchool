@@ -20,3 +20,4 @@ rules: |+
           
           ***********************
           ***********************
+valid_move: "Please choose a valid move"

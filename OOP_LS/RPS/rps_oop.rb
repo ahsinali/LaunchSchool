@@ -51,7 +51,7 @@ module DisplayMessages
     else
       str += "\n\nMoves made by #{name} are "
       str += move_record[0, move_length - 1] \
-             .join(',').concat(' and ', move_record[-1])
+             .join(' , ').concat(' and ', move_record[-1])
     end
     puts str
   end
@@ -68,7 +68,7 @@ class Player
   end
 
   def set_name
-    welcome
+    welcome if type == :human
     human_name if type == :human
     @name = COMPUTER_NAMES.sample if type == :computer
   end
@@ -76,7 +76,7 @@ class Player
   def human_name
     name = ''
     loop do
-      name = gets.chomp
+      name = gets.chomp.strip
       break if !name.empty?
       prompt MESSAGES['valid_name']
     end
@@ -100,9 +100,10 @@ class Human < Player
     move_temp = ''
     loop do
       prompt "Choose your move: "
-      puts MOVES[0, MOVES.length - 1].join(',').concat(' or ', MOVES[-1])
+      puts MOVES[0, MOVES.length - 1].join(' , ').concat(' or ', MOVES[-1])
       move_temp = gets.chomp
       break if MOVES.include?(move_temp)
+      prompt MESSAGES['valid_move']
     end
     @move = Move.new(move_temp)
     @move_record.push(move.move_type)
@@ -120,10 +121,8 @@ class Computer < Player
 
   def choose
     if COMPUTER_MOVES.keys.include?(name)
-      puts "name is in keyss"
       @move = Move.new(COMPUTER_MOVES[name].sample)
     else
-      puts 'Name is not in keys'
       @move = Move.new(MOVES.sample)
     end
     @move_record.push(move.move_type)
@@ -134,8 +133,6 @@ end
 class Move
   attr_accessor :move_type
 
-  include DisplayMessages
-
   def initialize(mv)
     @move_type = mv
   end
@@ -144,9 +141,6 @@ class Move
     WINNING_COMB[move_type].include?(other_move.move_type)
   end
 
-  def <(other_move)
-    WINNING_COMB[other_move.move_type].include?(move_type)
-  end
 end
 
 class RpsEngine
@@ -179,7 +173,7 @@ class RpsEngine
     if p1.move > p2.move
       p1.display_winner
       p1.increment_score
-    elsif p1.move < p2.move
+    elsif p2.move > p1.move
       p2.display_winner
       p2.increment_score
     else
@@ -198,11 +192,13 @@ class RpsEngine
 
   def run_game
     rules_review
+    system('clear')
     loop do
       choose
       game_winner
       display_score(p1, p2)
       break if !play_again?
+      system('clear')
     end
     display_score(p1, p2)
     p1.display_history
