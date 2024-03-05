@@ -1,0 +1,15 @@
+welcome: |+
+            "***************************"
+            "Welcome to Tic Tac Toe Game"
+            "***************************"
+enter_name: |+
+              "---------------------------"
+              "Please enter your name"
+              "---------------------------"
+valid_name: "Make sure to enter a valid Name."
+valid_move: "Please choose a valid move"
+marker_value: |+
+              **************************************************
+              Please enter a marker you would like to play with.
+              It should be a single character
+invalid_marker_pc : 'This is the computer marker, please chose another marker'
